@@ -72,6 +72,8 @@ If the setting is set to **Disabled** or **Not Configured**, and if Automatic Up
 The alternate download server configures the Windows Update Agent to download files from an alternative download server instead of the intranet update service.
 The option to download files with missing URLs allows content to be downloaded from the Alternate Download Server when there are no download URLs for files in the update metadata. This option should only be used when the intranet update service doesn't provide download URLs in the update metadata for files that are present on the alternate download server.
 
+Registry Path: HKLM\\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU\UseWUServer (0=Disabled, 1=Enabled)
+
 >[!NOTE]
 >If the "Configure Automatic Updates" policy is disabled, then this policy has no effect.
 >
@@ -107,6 +109,8 @@ Even when Windows Update is configured to receive updates from an intranet updat
 
 Use **Computer Configuration\Administrative Templates\Windows Components\Windows update\Do not connect to any Windows Update Internet locations** to enable this policy. When enabled, this policy will disable the functionality described above, and may cause connection to public services such as the Microsoft Store, Windows Update for Business, and Delivery Optimization to stop working.
 
+Registry: HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\DoNotConnectToWindowsUpdateInternetLocations (0=Disbaled, 1=Enabled)
+
 >[!NOTE]
 >This policy applies only when the device is configured to connect to an intranet update service using the "Specify intranet Microsoft update service location" policy.
 
@@ -125,12 +129,14 @@ If the intranet Microsoft update service supports multiple target groups, this p
 
 ### Allow signed updates from an intranet Microsoft update service location
 
-This policy setting allows you to manage whether Automatic Updates accepts updates signed by entities other than Microsoft when the update is found on an intranet Microsoft update service location.
+This policy setting allows you to manage whether Automatic Updates accepts updates signed by entities other than Microsoft when the update is found on an intranet Microsoft update service location. This settings is generally used when wanting to enable third-party updates through a non-Microsoft source.
 
 To configure this setting in Group Policy, go to **Computer Configuration\Administrative Templates\Windows Components\Windows update\Allow signed updates from an intranet Microsoft update service location**.
 
 If you enable this policy setting, Automatic Updates accepts updates received through an intranet Microsoft update service location, as specified by [Specify Intranet Microsoft update service location](#specify-intranet-microsoft-update-service-location), if they're signed by a certificate found in the "Trusted Publishers" certificate store of the local computer.
 If you disable or don't configure this policy setting, updates from an intranet Microsoft update service location must be signed by Microsoft.
+
+Registry: HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AcceptTrustedPublisherCerts (0=Disabled, 1=Enabled)
 
 >[!NOTE]
 >Updates from a service other than an intranet Microsoft update service must always be signed by Microsoft and are not affected by this policy setting.
